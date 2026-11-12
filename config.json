@@ -1,0 +1,26 @@
+{
+  "categoryId": "",
+  "panelChannelId": "",
+  "maxChannels": 25,
+  "defaultUserLimit": 0,
+  "maxUserLimit": 0,
+  "nameTemplate": "{emoji} {game} #{number}",
+  "allowedRoleIds": [],
+  "adminRoleIds": [],
+  "kickTargetChannelId": "",
+  "sweepIntervalSeconds": 60,
+  "panel": {
+    "title": "🐝 Temporären Voicechannel erstellen",
+    "description": "1. Tritt einem beliebigen Voicechannel bei (z. B. der Lobby).\n2. Wähle unten ein Spiel aus.\n3. Klicke auf **Channel erstellen**. Du wirst automatisch hineingeschoben.\n\nDer Kanal wird gelöscht, sobald ihn der letzte Spieler verlässt.",
+    "color": "#F5B700",
+    "selectPlaceholder": "Spiel auswählen …",
+    "buttonLabel": "Channel erstellen"
+  },
+  "games": [
+    { "value": "Wardogs", "label": "Wardogs", "emoji": "🐶" },
+    { "value": "Ready or not", "label": "Ready or not", "emoji": "🚨" },
+    { "value": "Arma", "label": "Arma", "emoji": "💣" },
+    { "value": "Broken Arrow", "label": "Broken Arrow", "emoji": "🏹" },
+    { "value": "freies zocken", "label": "Freies Zocken", "emoji": "🎯" }
+  ]
+}

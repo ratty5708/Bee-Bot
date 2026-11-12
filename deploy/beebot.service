@@ -1,0 +1,24 @@
+[Unit]
+Description=BeeBot – Discord-Bot für temporäre Voicechannels
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=beebot
+Group=beebot
+WorkingDirectory=/opt/beebot
+ExecStart=/usr/bin/node src/index.js
+Restart=always
+RestartSec=5
+Environment=NODE_ENV=production
+
+# Härtung: Der Bot darf nur in data/ schreiben.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/opt/beebot/data
+
+[Install]
+WantedBy=multi-user.target
