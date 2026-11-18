@@ -1,0 +1,35 @@
+# Schreibt bei jedem Push auf main die neuen Commits als Changelog in den Discord-Kanal.
+# Einrichtung: Repo → Settings → Secrets and variables → Actions → Secret DISCORD_CHANGELOG_WEBHOOK
+# (Webhook-URL des Changelog-Kanals). Fehlt das Secret, wird der Job übersprungen.
+# Einzelne Commits ausnehmen: [no changelog] in die Commit-Nachricht schreiben.
+name: Discord-Changelog
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      DISCORD_WEBHOOK: ${{ secrets.DISCORD_CHANGELOG_WEBHOOK }}
+    steps:
+      - uses: actions/checkout@v5
+        if: ${{ env.DISCORD_WEBHOOK != '' }}
+        with:
+          sparse-checkout: .github/scripts
+
+      - uses: actions/setup-node@v5
+        if: ${{ env.DISCORD_WEBHOOK != '' }}
+        with:
+          node-version: 22
+
+      - name: Changelog senden
+        if: ${{ env.DISCORD_WEBHOOK != '' }}
+        env:
+          CHANGELOG_TITLE: 🤖 BeeBot-Update
+        run: node .github/scripts/discord-changelog.mjs
